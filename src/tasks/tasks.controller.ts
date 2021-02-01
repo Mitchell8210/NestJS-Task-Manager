@@ -33,8 +33,7 @@ export class TasksController {
   }
 
   @Post()
-  @UsePipes(ValidationPipe)
-  async createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+  async createTask(@Body(ValidationPipe) createTaskDto: CreateTaskDto): Promise<Task> {
     return this.tasksService.createTask(createTaskDto);
   }
 

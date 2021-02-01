@@ -5,12 +5,12 @@ import { UserRepository } from './user.repository';
 
 @Injectable()
 export class AuthService {
-    constructor(
-        @InjectRepository(UserRepository)
-        private userRepository: UserRepository,
-    ) {}
-    
-    signUp(authCredentialsDto: AuthCredentialsDto): Promise<void>{
-        return this.userRepository.signUp(authCredentialsDto);
-    }
+  constructor(
+    @InjectRepository(UserRepository)
+    private userRepository: UserRepository,
+  ) {}
+
+  signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
+    return this.userRepository.signUp(authCredentialsDto);
+  }
 }

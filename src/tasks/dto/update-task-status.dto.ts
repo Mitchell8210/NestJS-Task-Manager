@@ -1,6 +1,6 @@
-import { TaskStatus } from "../task-status.enum";
+import { TaskStatus } from '../task-status.enum';
 
 export class UpdateTaskStatusDto {
-    id: string;
-    status: TaskStatus;
+  id: string;
+  status: TaskStatus;
 }

@@ -1,4 +1,4 @@
-import { IsIn, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsIn, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
 import { TaskStatus } from '../task-status.enum';
 
 export class GetTasksFilterDto {
@@ -8,5 +8,6 @@ export class GetTasksFilterDto {
 
   @IsOptional()
   @IsNotEmpty()
+  @MinLength(2)
   search: string;
 }

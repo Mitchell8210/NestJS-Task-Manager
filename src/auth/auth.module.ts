@@ -10,18 +10,18 @@ import { UserRepository } from './user.repository';
 @Module({
   imports: [
     PassportModule.register({
-      defaultStrategy: 'jwt'
+      defaultStrategy: 'jwt',
     }),
     JwtModule.register({
       secret: 'topSecret51',
       signOptions: {
-        expiresIn: 3600,
-      }
+        expiresIn: 100000,
+      },
     }),
-    TypeOrmModule.forFeature([UserRepository])
+    TypeOrmModule.forFeature([UserRepository]),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
-  exports: [JwtStrategy, PassportModule]
+  exports: [JwtStrategy, PassportModule],
 })
 export class AuthModule {}

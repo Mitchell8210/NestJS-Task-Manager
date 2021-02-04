@@ -3,8 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/tpeorm.config';
 import { TasksModule } from './tasks/tasks.module';
 import { AuthModule } from './auth/auth.module';
+import { GrowsModule } from './grows/grows.module';
 
 @Module({
-  imports: [TasksModule, TypeOrmModule.forRoot(typeOrmConfig), AuthModule],
+  imports: [
+    TasksModule,
+    TypeOrmModule.forRoot(typeOrmConfig),
+    AuthModule,
+    GrowsModule,
+  ],
 })
 export class AppModule {}

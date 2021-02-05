@@ -13,6 +13,14 @@ export class GrowRepository extends Repository<Grow> {
     return grows;
   }
 
+  async getGrowById(id: String): Promise<Grow> {
+    const query = this.createQueryBuilder('grow');
+    
+    query.where('grow.id = :id', {id})
+    const grow = query.getOne();
+    return grow;
+  }
+
   async createGrow(createGrowDto: CreateGrowDto, user: User) {
     const {
       grow_name,

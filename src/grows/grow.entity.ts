@@ -4,11 +4,13 @@ import {
   Column,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Environment } from './enums/environment.enum';
 import { StrainType } from './enums/strain-type.enum';
 import { StartingStage } from './enums/starting-stage.enum';
+import { Log } from 'src/growLogs/log.entity';
 
 @Entity()
 export class Grow extends BaseEntity {
@@ -38,4 +40,7 @@ export class Grow extends BaseEntity {
 
   @Column()
   userId: Number;
+
+  @OneToMany(type => Log, (log) => log.grow, {eager: true})
+  logs: Log
 }

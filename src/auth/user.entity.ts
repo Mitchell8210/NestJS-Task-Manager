@@ -9,6 +9,7 @@ import {
 import * as bcrypt from 'bcrypt';
 import { Task } from 'src/tasks/task.entity';
 import { Grow } from 'src/grows/grow.entity';
+import { Log } from 'src/growLogs/log.entity';
 @Entity()
 @Unique(['username'])
 export class User extends BaseEntity {
@@ -32,6 +33,9 @@ export class User extends BaseEntity {
 
   @OneToMany((type) => Grow, (grow) => grow.user, { eager: true })
   grows: Grow[];
+
+  @OneToMany((type) => Log, (log) => log.user, {eager: true})
+  logs: Log[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

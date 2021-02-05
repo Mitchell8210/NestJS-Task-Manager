@@ -16,6 +16,10 @@ export class GrowsService {
     return this.growRepository.getGrows(user);
   }
 
+  async getGrowById(grow_id: String): Promise<Grow> {
+    return this.growRepository.getGrowById(grow_id);
+  }
+
   async createGrow(createGrowDto: CreateGrowDto, user: User): Promise<Grow> {
     return this.growRepository.createGrow(createGrowDto, user);
   }

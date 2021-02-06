@@ -1,5 +1,6 @@
 import { User } from "src/auth/user.entity";
 import { Grow } from "src/grows/grow.entity";
+import {getRepository} from "typeorm";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateLogDto } from "./dto/create-log.dto";
 import { Log } from "./log.entity";
@@ -17,14 +18,14 @@ export class LogRepository extends Repository<Log> {
     }
 
     async createLog(createLogDto: CreateLogDto, user: User) {
-        const { name, grow_id, notes} = createLogDto;
-        console.log("WHAT TYPE", user)
-        const grow = user.grows.find(grow => grow.id == grow_id);
+        const { name, grow_id} = createLogDto;
+
+        const growRepository = getRepository(Grow);
+        const grow = await growRepository.findOne({id: grow_id})
         const log = new Log()
         log.name = name;
         log.grow = grow;
         log.user = user;
-        log.notes = notes;
 
         await log.save()
         delete log.user;

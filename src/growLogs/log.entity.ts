@@ -1,6 +1,7 @@
 import { User } from "src/auth/user.entity";
 import { Grow } from "src/grows/grow.entity";
-import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Note } from "src/notes/note.entity";
+import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
 
@@ -12,8 +13,9 @@ export class Log extends BaseEntity {
     @Column()
     name: String;
 
-    @Column()
-    notes: String;
+    @OneToMany((type) => Note, (note) => note.log, {eager: true})
+    notes: Note[]
+
 
     @ManyToOne((type) => Grow, (grow) => grow.logs, { eager: false })
     grow: Grow;
